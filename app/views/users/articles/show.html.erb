@@ -1,0 +1,29 @@
+<article class="mb-4 mt-5">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <h1 class="mb-1"><%= @article.title %></h1>
+        <p class="text-secondary mb-3 mt-2"><small><%= @article.created_at.strftime("%B %-d, %Y") %></small></p>
+        <p class="mt-0"><%= @article.headline %></p>
+        <%= image_tag(@article.header_image, width: '100%', class: 'mb-5') %>
+        <%= @article.body %>
+
+        <% if user_signed_in? %>
+          <div class="row mt-5">
+            <%= link_to "Edit", edit_article_path(@article), class: 'col me-3 btn btn-outline-secondary' %>
+            <%= link_to "Destroy", article_path(@article),
+                        class: 'col btn btn-outline-danger',
+                        method: :delete,
+                        data: { confirm: "Are you sure?" } %>
+          </div>
+        <% end %>
+
+        <h2 class="mt-5"><%= @article.comments.length %> Comments</h2>
+        <%= render @article.comments %>
+
+        <h4>Add a comment:</h4>
+        <%= render 'users/comments/form' %>
+      </div>
+    </div>
+  </div>
+</article>

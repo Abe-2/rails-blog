@@ -1,0 +1,16 @@
+<h4 class="d-flex justify-content-between mb-4">
+  <span>Articles</span>
+  <%= link_to 'New Article', new_article_path, class: 'btn btn-primary' %>
+</h4>
+
+<% @articles.each do |article| %>
+  <%= link_to article, class: 'text-decoration-none' do %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title text-dark"><%= article.title %></h5>
+        <p class="text-secondary mb-0"><%= article.body %></p>
+      </div>
+    </div>
+  <% end %>
+
+<% end %>

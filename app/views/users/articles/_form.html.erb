@@ -1,0 +1,45 @@
+<%= form_with model: article do |form| %>
+  <div>
+    <%= form.label :header_image, class: "form-label" %><br>
+    <%= form.file_field :header_image, class: "form-control", type: "file" %><br>
+    <%# if article.header_image.present? %>
+      <%#= image_tag(article.header_image, width: '100%') %>
+    <%# end %>
+    <% article.errors.full_messages_for(:header_image).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %><br>
+    <%= form.text_field :title, class: "form-control" %>
+    <% article.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :headline, class: "form-label" %><br>
+    <%= form.text_field :headline, class: "form-control" %>
+    <% article.errors.full_messages_for(:headline).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :body, class: "form-label" %><br>
+    <%= form.rich_text_area :body, class: "form-control" %><br>
+    <% article.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :status, class: "form-label" %><br>
+    <%= form.select :status, ['public', 'private', 'archived'], { :selected => 'public' }, { :class => 'form-select' } %>
+  </div>
+
+  <div>
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

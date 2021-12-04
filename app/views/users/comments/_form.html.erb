@@ -1,0 +1,17 @@
+<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+  <div class="mb-4">
+    <%= form.label :commenter, class: "form-label" %><br>
+    <%= form.text_field :commenter, class: "form-control" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :body, class: "form-label" %><br>
+    <%= form.text_area :body, class: "form-control" %>
+  </div>
+  <div class="d-none">
+    <%= form.label :status %><br>
+    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+  </div>
+  <div>
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
